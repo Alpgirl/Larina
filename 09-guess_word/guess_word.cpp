@@ -3,7 +3,6 @@
     #include <codecvt>
 #endif
 #include <algorithm>
-// #include <wstring.h>
 #include <string>
 
 using namespace std;
@@ -21,7 +20,6 @@ int main() {
     wchar_t letter;
     wcout << L"Введите слово: ";
     getline(wcin, word);
-    // wcin >> word;
 
     if (word.empty()) {
         return 0;
