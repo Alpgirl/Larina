@@ -1,43 +1,63 @@
 #include <iostream>
-#include <string.h>
+#ifdef __APPLE__
+    #include <codecvt>
+#endif
+#include <algorithm>
+// #include <wstring.h>
 #include <string>
 
 using namespace std;
 
-int main(){
-    int i = 0, k = 0, flag = 0;
-    string word, guess_word = "";
-    char letter;
-    cout << "Введите слово: ";
-    getline(cin, word);
-    while(word[i] != '\0'){
-        guess_word += "_";
-        i++;
+int main() {
+    #ifdef __APPLE__
+    wcin.imbue(std::locale(locale(""), new std::codecvt_utf8<wchar_t>));
+    wcout.imbue(std::locale(locale(""), new std::codecvt_utf8<wchar_t>));
+    wcerr.imbue(std::locale(locale(""), new std::codecvt_utf8<wchar_t>));
+    #endif
+    
+    int i = 0, flag = 0;
+    bool match;
+    wstring word, guess_word = L"";
+    wchar_t letter;
+    wcout << L"Введите слово: ";
+    getline(wcin, word);
+    // wcin >> word;
+
+    if (word.empty()) {
+        return 0;
     }
-    while (flag == 0){
-        i = 0;
-        k = 0;
-        cout << "Введите букву: ";
-        cin >> letter;
-        while(word[i] != '\0'){
-            if (word[i] == letter){
+
+    wcout << word << ' ' << word.size() << endl;
+    guess_word.assign(word.size(), L'_');
+    wcout << guess_word << endl;
+    /*
+    while(word[i] != '\0'){
+        guess_word += L"_";
+        wcout << guess_word << endl;
+        i++;
+    }*/
+
+    while (guess_word != word) {
+        match = false;
+        wcout << L"Введите букву: ";
+        wcin >> letter;
+
+        for (i = 0; i < word.length(); ++i) {
+            if (word[i] == letter) {
                 guess_word[i] = letter;
-                k++;
+                match = true;
             }
-            i++;
         }
-        if (k == 0){
-            cout << "Нет такой буквы в этом слове!" << endl;
-            cout << guess_word << endl;
-        }
-        else{
-            cout << "Есть такая буква в этом слове!" << endl;
-            cout << guess_word << endl;
-        }
-        if (guess_word == word){
-            flag++;
-            cout << "Вы угадали!" << endl;
+
+        if (!match) {
+            wcout << L"Нет такой буквы в этом слове!" << endl;
+            wcout << guess_word << endl;
+        } 
+        else {
+            wcout << L"Есть такая буква в этом слове!" << endl;
+            wcout << guess_word << endl;
         }
     }  
+    wcout << L"Вы угадали!" << endl;
     return 0;
 }
