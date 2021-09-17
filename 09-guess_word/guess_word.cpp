@@ -25,7 +25,6 @@ int main() {
         return 0;
     }
 
-    wcout << word << ' ' << word.size() << endl;
     guess_word.assign(word.size(), L'_');
     wcout << guess_word << endl;
     /*
