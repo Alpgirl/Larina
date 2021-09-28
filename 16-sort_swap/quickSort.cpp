@@ -11,18 +11,25 @@ void printArr(int *arr, int size) {
     }
     cout << endl;
 }
-void exchange1(int &a, int &b) {
+void exchange1(int &a, int &b) { // in sum
     if (a != b) {
         a = a + b;
         b = a - b;
         a = a - b;
     }
 }
-void exchange2(int &a, int &b) {
+void exchange2(int &a, int &b) { // in temporary valiable
     int tmp;
     tmp = b;
     b = a;
     a = tmp;
+}
+void exchange3(int &a, int &b) { // in bit operations
+    if (a != b) {
+        a = a ^ b; // a = 101^110 = 011
+	    b = a ^ b; // b = 011^110 = 101
+	    a = a ^ b; // a = 011^101 = 110
+    }
 }
 void quickSort (int *arr, int f, int l) {
     int i = f, j = l;
@@ -35,7 +42,7 @@ void quickSort (int *arr, int f, int l) {
             j--;
         if (i <= j)
         {
-            exchange1(arr[i], arr[j]);
+            exchange3(arr[i], arr[j]);
             i++;
             j--;
         }
