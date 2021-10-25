@@ -20,8 +20,6 @@ int main() {
     cout << endl;
     cout << "LIFO:" << endl;
     f2.print();
-    //f2.pop();
 
-    /*f2.print();*/
     return 0;
 }
