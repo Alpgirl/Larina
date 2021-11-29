@@ -19,10 +19,12 @@ double z_func(double x, double y) {
     return sin(x) * sin(y);
 }
 double dens_stand_distrib(double x, double y) {
-    double ox = 10.0, oy = 10.0, p = 0.5, mx = 0.0, my = 0.0;
-    return 1.0 / (2.0 * M_PI * ox * oy * pow(1.0 - pow(p, 2), 0.5)) * \
+    double ox = 1.0, oy = 1.0, p = 0.0, mx = 0.0, my = 0.0;
+    //return 1.0 / (2.0 * M_PI * ox * oy * pow(1.0 - pow(p, 2), 0.5)) * \
     exp(-1.0 / (2.0 * (1 - pow(p, 2))) * (pow((x - mx)/ox, 2) - \
     2.0 * p * (x - mx) * (y - my)/(ox * oy) + pow((y - my)/oy, 2)));
+    return 1.0 / (2.0 * M_PI * ox * oy) * \
+    exp(- 1.0 / 2.0 * (pow((x - mx)/ox, 2) + pow((y - my)/oy, 2)));
 }
 void points_func(int n, double func(double, double), string str, double start, double step, int dimension) {
     double dx = step, x = start, y = start;
@@ -50,7 +52,7 @@ int main() {
     points_func(100, sin_func, "sin_points.txt", 0.0, step(0.0, 2.0 * M_PI, 100), 1);
     points_func(200, sin_x_func, "sin_x_points.txt", -100.0, step(-100.0, 100.0, 200), 1);
     points_func(100, z_func, "z_points.txt", 0.0, step(0.0, 2.0 * M_PI, 100), 2);
-    points_func(200, dens_stand_distrib, "distr_points.txt", -100.0, step(-100.0, 100.0, 400), 2);
+    points_func(100, dens_stand_distrib, "distr_points.txt", -10.0, step(-10.0, 10.0, 100), 2);
 
     return 0;
 }
