@@ -3,7 +3,7 @@
 using namespace std;
 
 storage :: ~ storage () {
-    if (T != NULL) 
+    while (T != NULL) 
         pop();
 }
 
