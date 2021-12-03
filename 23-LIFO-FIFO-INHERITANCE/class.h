@@ -1,14 +1,19 @@
 #ifndef CLASS_H
 #define CLASS_H
+#define NULL __null
 
-struct transition;
+struct transition {
+    int value;
+    transition *next;
+    transition(int _value): value(_value) {}
+};
 
 class storage {
     protected:
         transition *T;
         transition *tmp;
     public:
-        storage();
+        storage(): T(NULL), tmp(NULL) {}
         ~storage();
 
         int pop();

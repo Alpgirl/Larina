@@ -1,5 +1,6 @@
 #include <iostream>
 #include "class.h"
+//#include "functions.cpp"
  
 using namespace std;
 int main() {
@@ -20,6 +21,10 @@ int main() {
     f2.push(100);
     f2.push(200);
     f2.push(300);
+    f2.push(500);
+
+    f2.push(700);
+    f2.pop();
     f2.pop();
     f2.print();
 
